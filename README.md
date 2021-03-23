@@ -38,9 +38,9 @@ PCBs were fabricated by [JLC PCB](https://jlcpcb.com/).
 
 [Controller PCB top layer.pdf](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Controller_PCB_top_layer.pdf)
 
-![Populated PCB - Top View](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/IMG_8281.jpg)
+[Populated PCB - Top View](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/IMG_8281.jpg)
 
-![Populated PCB - Top View](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/IMG_8282.jpg)
+[Populated PCB - Top View](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/IMG_8282.jpg)
 
 ## 💾Embedded software
 

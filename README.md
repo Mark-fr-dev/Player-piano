@@ -50,7 +50,7 @@ The software accepts a piano song via MIDI connector in the standard MIDI config
 
 [An initial prototype test of 44 servos](https://youtu.be/G8YKHj9sTNw)
 
-[Current Prototype playing Sia -The Greatest](Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/Piano_player_sia_3.mp4)
+[Current Prototype playing Sia -The Greatest](https://youtu.be/1j-duLm_anE)
 
 [Current Prototype playing the MacGuyver theme song](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Piano_player_Macguyver_2.mp4)
 

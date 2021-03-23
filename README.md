@@ -48,17 +48,11 @@ The software accepts a piano song via MIDI connector in the standard MIDI config
 
 ## 📸 Media
 
-[Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/Piano_player_wave.mp4](Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/Piano_player_wave.mp4)
+[An initial prototype test of 44 servos](https://youtu.be/G8YKHj9sTNw)
 
-An initial prototype test of 44 servos
+[Current Prototype playing Sia -The Greatest](Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/Piano_player_sia_3.mp4)
 
-[Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/Piano_player_sia_3.mp4](Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/Piano_player_sia_3.mp4)
-
-Current Prototype playing Sia -The Greatest
-
-[Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/Piano_player_Macguyver_2.mp4](Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/Piano_player_Macguyver_2.mp4)
-
-Current Prototype playing the MacGuyver theme song
+[Current Prototype playing the MacGuyver theme song](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Piano_player_Macguyver_2.mp4)
 
 ## ✅ Still To Do
 

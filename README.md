@@ -6,7 +6,7 @@ The client, who is affiliated with a well known South African artist, required t
 
 This project is currently on hold
 
-## ⁉️General Design Assumptions
+## General Design Assumptions
 
 After discussions with the client with regards the final implementation, the following design assumptions and constraints were agreed apon:
 
@@ -14,15 +14,15 @@ After discussions with the client with regards the final implementation, the fol
 - The actuators for the prototype will be simple hobby servo motors for simplicity and replaceability. Other options considered were: solenoids, muscle wires
 - The software will use standard MIDI commands to receive music from a PC-like device, this could be a real PC or a raspberry pi.
 
-## 🦾Mechanical Design
+## Mechanical Design
 
 All mechanical design was performed using Autodesk Fusion 360. Having limited budget and access to facilities, it was decided to make the prototype with laser-cut plywood flat panels assembled with screws.
 
-[Piano Player Assembly Pictures](Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/Piano%20Player%20Assembly%20Pictures%20b2c6857be631407b80337fd8818d164d.csv)
+[Piano Player Assembly Pictures](http://bit.ly/399H24x)
 
-[Piano Player Sketches and Renders](Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/Piano%20Player%20Sketches%20and%20Renders%209399ab6f0d6e467e9a09f3d7f2965097.csv)
+[Piano Player Sketches and Renders](http://bit.ly/3tLXlw5)
 
-[Piano Player Mechanical Drawings](Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/Piano%20Player%20Mechanical%20Drawings%204d276254374442d387b28b677f1f27b1.md)
+[Piano Player Mechanical Drawings](http://bit.ly/3vU0D28)
 
 ## ⚡Electronics
 
@@ -32,15 +32,15 @@ Electronic schematic and PCB design was performed using KiCad.
 
 PCBs were fabricated by [JLC PCB](https://jlcpcb.com/).
 
-[Controller PCB Design.pdf](Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/Controller_PCB_Design.pdf)
+[Controller PCB Design.pdf](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Controller_PCB_Design.pdf)
 
-[Controller PCB bottom layer.pdf](Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/Controller_PCB_bottom_layer.pdf)
+[Controller PCB bottom layer.pdf](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Controller_PCB_bottom_layer.pdf)
 
-[Controller PCB top layer.pdf](Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/Controller_PCB_top_layer.pdf)
+[Controller PCB top layer.pdf](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Controller_PCB_top_layer.pdf)
 
-![Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/IMG_8281.jpg](Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/IMG_8281.jpg)
+![Populated PCB - Top View](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/IMG_8281.jpg)
 
-![Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/IMG_8282.jpg](Piano%20Player%20-%20a%20Mechatronics%20Design%20e9eb46d845854e729e08940983d9067d/IMG_8282.jpg)
+![Populated PCB - Top View](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/IMG_8282.jpg)
 
 ## 💾Embedded software
 

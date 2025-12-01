@@ -1,71 +1,89 @@
-# Piano Player - a Mechatronics Design
+# 🎹 Piano Player – A Mechatronics Design Project
 
-## 🎯Objective
+## 🎯 Objective
 
-The client, who is affiliated with a well known South African artist, required the development of a system capable of playing all the notes of a piano. As this was a remote working relationship, all designs would later be implemented in South Africa by a local engineer or technician once the design is completed.
+A client affiliated with a well-known South African artist commissioned the development of an electromechanical system capable of playing all 88 notes of a piano. Because this was a remote collaboration, all design work had to be produced in Taiwan.
 
-This project is currently on hold
+This project is currently **on hold**, pending further client direction.
 
-## General Design Assumptions
+---
 
-After discussions with the client with regards the final implementation, the following design assumptions and constraints were agreed apon:
+## 🧩 Design Assumptions and Constraints
 
-- At the customer's request, the system will use an Arduino based micro controller
-- The actuators for the prototype will be simple hobby servo motors for simplicity and replaceability. Other options considered were: solenoids, muscle wires
-- The software will use standard MIDI commands to receive music from a PC-like device, this could be a real PC or a raspberry pi.
+Following initial discussions with the client, the key design constraints and assumptions were:
 
-## Mechanical Design
+- At the client’s request, the system must use an **Arduino-class microcontroller**.
+- Actuators for the prototype will use **hobby servo motors** to simplify sourcing, replacement, and prototyping. (Alternative actuators considered: solenoids, muscle wire/shape-memory wire.)
+- The firmware will receive input via **standard MIDI commands**, provided by a PC-like device (desktop PC or Raspberry Pi).
 
-All mechanical design was performed using Autodesk Fusion 360. Having limited budget and access to facilities, it was decided to make the prototype with laser-cut plywood flat panels assembled with screws.
+---
 
-[Piano Player Assembly Pictures](http://bit.ly/399H24x)
+## ⚙️ Mechanical Design
 
-[Piano Player Sketches and Renders](http://bit.ly/3tLXlw5)
+Mechanical design was performed in **Autodesk Fusion 360**.  
+Due to limited fabrication budget and workshop access, the prototype was built from **laser-cut plywood** panels, assembled with screws for rapid iteration and ease of modification.
 
-[Piano Player Mechanical Drawings](http://bit.ly/3vU0D28)
+- [Piano Player Assembly Pictures](http://bit.ly/399H24x)
+- [Piano Player Sketches and Renders](http://bit.ly/3tLXlw5)
+- [Piano Player Mechanical Drawings](http://bit.ly/3vU0D28)
 
-## ⚡Electronics
+---
 
-The project requires the control of 88 servo motors, one way to achieve this is with 2 Arduino Mega boards. An Arduino "shield" was designed to interface with the 44 servos on each channel.
+## ⚡ Electronics
 
-Electronic schematic and PCB design was performed using KiCad.
+The system requires control of **88 independent servo motors**.  
+To support this, the design uses **two Arduino Mega boards**, each responsible for 44 keys.
 
-PCBs were fabricated by [JLC PCB](https://jlcpcb.com/).
+A custom interface shield was created to route signals, power distribution, and control to each group of servos.
 
-[Controller PCB Design.pdf](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Controller_PCB_Design.pdf)
+All schematics and PCB designs were developed in **KiCad**, and the boards were fabricated by **[JLCPCB](https://jlcpcb.com/)**.
 
-[Controller PCB bottom layer.pdf](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Controller_PCB_bottom_layer.pdf)
+**PCB files and images:**
 
-[Controller PCB top layer.pdf](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Controller_PCB_top_layer.pdf)
+- [Controller PCB Design.pdf](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Controller_PCB_Design.pdf)
+- [Controller PCB bottom layer.pdf](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Controller_PCB_bottom_layer.pdf)
+- [Controller PCB top layer.pdf](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Controller_PCB_top_layer.pdf)
+- [Populated PCB – Top View](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/IMG_8281.jpg)
+- [Populated PCB – Top View](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/IMG_8282.jpg)
 
-[Populated PCB - Top View](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/IMG_8281.jpg)
+---
 
-[Populated PCB - Top View](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/IMG_8282.jpg)
+## 💾 Embedded Software
 
-## 💾Embedded software
+The firmware receives piano performance data via a **standard MIDI IN connector**.  
+A hardware selector switch determines whether the controller handles the upper or lower 44 notes of the keyboard.
 
-The software accepts a piano song via MIDI connector in the standard MIDI configuration. A hard switch sets whether the controller is controlling the top or bottom 44 notes.
+Firmware responsibilities include:
+
+- MIDI message parsing  
+- Servo positioning control  
+- Key timing and velocity approximation  
+- Actuator synchronization  
+- Basic error handling and test modes  
+
+---
 
 ## 📸 Media
 
-[An initial prototype test of 44 servos](https://youtu.be/G8YKHj9sTNw)
+- [Prototype test of 44 servos](https://youtu.be/G8YKHj9sTNw)
+- [Current Prototype playing Sia – “The Greatest”](https://youtu.be/1j-duLm_anE)
+- [Current Prototype playing the MacGyver theme](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Piano_player_Macguyver_2.mp4)
 
-[Current Prototype playing Sia -The Greatest](https://youtu.be/1j-duLm_anE)
+---
 
-[Current Prototype playing the MacGuyver theme song](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Piano_player_Macguyver_2.mp4)
+## 🔧 Planned Improvements / Future Work
 
-## ✅ Still To Do
+With the migration to an STM32WB55 microcontroller and Zephyr RTOS, several earlier design limitations will be addressed with a new architecture:
 
-- Improvements
+### **Hardware & Electronics Updates**
+- Transition from direct servo control to **I2C-based PWM driver boards** to improve scalability, timing accuracy, and electrical load distribution.
+- Redesign of actuator control electronics to better support synchronized multi-key actions.
+- Improved mechanical anchoring to prevent lifting/shifting during dense chord play.
 
-    There are improvements to be made to the software and the mechanical hardware system. At present there are also a few errors on the PCB that could be fixed in a future revision of the board.
+### **Firmware & System Architecture**
+- Porting the original Arduino firmware to **Zephyr RTOS**, enabling structured multitasking (MIDI parsing, scheduling, actuator control).
+- Evaluate **USB-MIDI or Bluetooth-MIDI** input for more flexible song control.
 
-    Because of the use of a desktop rubber piano which does not give way as the keys are pressed, the player also has a tendency to lift itself up and move off the correct keys when too many keys are played concurrently. This problem is being addressed.
-
-- Still to implement
-
-    The PCB was designed to monitor the temperatures of each actuator to prompt maintenance before failure. This still needs to be implemented and tested in both hardware and software.
-
-- Raspberry Pi
-
-    At present the MIDI files are sent by a desktop PC, but future development should have them sent by a WIFI enabled Raspberry Pi, accessible from the internet or mobile phone to upload new files or control the songs that are being played.
+### **Software Enhancements**
+- Reintroduce actuator temperature monitoring and protection once the new hardware stack is finalized.
+- Improve servo timing algorithms for smoother, more musical playability.

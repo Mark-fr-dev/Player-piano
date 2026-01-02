@@ -2,27 +2,36 @@
 
 ## 🎯 Objective
 
-A client affiliated with a well-known South African artist commissioned the development of an electromechanical system capable of playing all 88 notes of a piano. Because this was a remote collaboration, all design work had to be produced in Taiwan.
+A client affiliated with a well-known South African artist commissioned the development of a full-range electromechanical piano-playing system capable of actuating all 88 keys of a standard acoustic piano.
 
-This project is currently **on hold**, pending further client direction.
+The project was conducted as a fully remote collaboration, with all mechanical, electronic, and firmware design performed in Taiwan, and hardware fabricated and assembled locally.
+
+The project is currently on hold, pending further artistic direction from the client.
+In parallel, the system is being actively redesigned and modernized as a technical R&D platform focused on embedded systems architecture, real-time control, and power-aware firmware design.
 
 ---
 
 ## 🧩 Design Assumptions and Constraints
 
-Following initial discussions with the client, the key design constraints and assumptions were:
-
-- At the client’s request, the system must use an **Arduino-class microcontroller**.
-- Actuators for the prototype will use **hobby servo motors** to simplify sourcing, replacement, and prototyping. (Alternative actuators considered: solenoids, muscle wire/shape-memory wire.)
-- The firmware will receive input via **standard MIDI commands**, provided by a PC-like device (desktop PC or Raspberry Pi).
+Initial design discussions with the client led to the following explicit constraints and architectural assumptions:
+- At the client’s request, the initial prototype must use an Arduino-class microcontroller, prioritizing accessibility, ease of replacement, and rapid prototyping.
+- Hobby servo motors were selected as actuators for the prototype phase, balancing availability, mechanical simplicity, and controllability.
+- Alternative actuators evaluated during concept development included solenoids and shape-memory (muscle wire) actuators.
+- Musical performance data would be supplied using standard MIDI messages, originating from a PC-class device such as a desktop computer or Raspberry Pi.
+- The system must be modular and serviceable, allowing partial builds and incremental expansion during prototyping.
+These constraints strongly influenced early decisions around mechanical layout, electronics partitioning, and firmware structure.
 
 ---
 
 ## ⚙️ Mechanical Design
 
-Mechanical design was performed in **Autodesk Fusion 360**.  
-Due to limited fabrication budget and workshop access, the prototype was built from **laser-cut plywood** panels, assembled with screws for rapid iteration and ease of modification.
+Mechanical design was carried out in Autodesk Fusion 360, with emphasis on:
+- Rapid iteration
+- Low-cost fabrication
+- Easy disassembly and modification
+Due to limited workshop access and budget constraints, the prototype structure was constructed from laser-cut plywood panels, assembled using mechanical fasteners rather than adhesives. This allowed fast design revisions and mechanical experimentation during early testing.
 
+Design artifacts:
 - [Piano Player Assembly Pictures](http://bit.ly/399H24x)
 - [Piano Player Sketches and Renders](http://bit.ly/3tLXlw5)
 - [Piano Player Mechanical Drawings](http://bit.ly/3vU0D28)
@@ -31,14 +40,23 @@ Due to limited fabrication budget and workshop access, the prototype was built f
 
 ## ⚡ Electronics
 
-The system requires control of **88 independent servo motors**.  
+The system requires independent control of **88 independent servo motors**, each corresponding to a single piano key..  
 To support this, the design uses **two Arduino Mega boards**, each responsible for 44 keys.
 
-A custom interface shield was created to route signals, power distribution, and control to each group of servos.
+To manage I/O limits and simplify firmware complexity during the initial phase:
+- The system was partitioned across two Arduino Mega boards
+- Each controller manages 44 keys, corresponding to either the upper or lower half of the keyboard
+- A hardware selector switch determines which note range a controller is responsible for
 
-All schematics and PCB designs were developed in **KiCad**, and the boards were fabricated by **[JLCPCB](https://jlcpcb.com/)**.
+A custom interface shield was designed to handle:
+- Servo signal routing
+- Power distribution
+- External MIDI input
+- Board-level interconnects and test access
 
-**PCB files and images:**
+All schematics and PCB layouts were designed in KiCad, with fabrication performed by JLCPCB.
+
+**PCB documentation:**
 
 - [Controller PCB Design.pdf](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Controller_PCB_Design.pdf)
 - [Controller PCB bottom layer.pdf](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Controller_PCB_bottom_layer.pdf)
@@ -50,40 +68,63 @@ All schematics and PCB designs were developed in **KiCad**, and the boards were 
 
 ## 💾 Embedded Software
 
-The firmware receives piano performance data via a **standard MIDI IN connector**.  
-A hardware selector switch determines whether the controller handles the upper or lower 44 notes of the keyboard.
+TThe original firmware was written in C/C++ and executed on Arduino Mega microcontrollers.
 
-Firmware responsibilities include:
+The system receives performance data via a standard 5-pin MIDI IN interface, parses incoming MIDI messages, and translates note and velocity information into actuator motion.
 
-- MIDI message parsing  
-- Servo positioning control  
-- Key timing and velocity approximation  
-- Actuator synchronization  
-- Basic error handling and test modes  
+Core firmware responsibilities include:
+- Real-time MIDI message parsing and validation
+- Mapping MIDI note numbers to physical actuators
+- Servo position control and motion profiling
+- Approximation of key velocity through timing and displacement
+- Coordination and synchronization of multiple actuators during chords
+- Diagnostic test modes and basic fault handling
+
+While functionally successful, this monolithic firmware structure exposed several architectural limitations related to timing determinism, scalability, and power coordination as system complexity increased.
 
 ---
 
 ## 📸 Media
-
+### First prototype (Arduino)
 - [Prototype test of 44 servos](https://youtu.be/G8YKHj9sTNw)
-- [Current Prototype playing Sia – “The Greatest”](https://youtu.be/1j-duLm_anE)
-- [Current Prototype playing the MacGyver theme](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Piano_player_Macguyver_2.mp4)
+- [Old Prototype playing Sia – “The Greatest”](https://youtu.be/1j-duLm_anE)
+- [Old Prototype playing the MacGyver theme](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Piano_player_Macguyver_2.mp4)
+### New prototype (STM32/Zephyr RTOS)
+**Why only 44 servos are shown**
+The piano player architecture is modular, consisting of two identical 44-key subsystems. During the current redesign phase, one subsystem remains in active development while the second 44-key actuator assembly was sent to the client for evaluation and testing.
 
+The later videos therefore demonstrate only one half of the keyboard, but reflect the final control approach being validated prior to re-integration into a full 88-key system.
+- [Zephyr Prototype - Calibration](https://youtu.be/I6WWZ7fvxso?si=0EKCNAyHqwldLYc-)
+- [Zephyr prototype - River Flows in You - Yaruma](https://youtu.be/aHvtVR1HKiI?si=-SzJifrcjJAI7ls0)
+  
 ---
 
-## 🔧 Planned Improvements / Future Work
+## 🔧 System Redesign & Ongoing R&D (Zephyr RTOS Learning Project)
 
-With the migration to an STM32WB55 microcontroller and Zephyr RTOS, several earlier design limitations will be addressed with a new architecture:
+To address limitations discovered during the Arduino-based implementation, the project is currently being re-architected as a modern embedded systems platform.
 
-### **Hardware & Electronics Updates**
-- Transition from direct servo control to **I2C-based PWM driver boards** to improve scalability, timing accuracy, and electrical load distribution.
-- Redesign of actuator control electronics to better support synchronized multi-key actions.
-- Improved mechanical anchoring to prevent lifting/shifting during dense chord play.
+This redesign serves both as a functional upgrade and as a hands-on learning project focused on Zephyr RTOS, ARM Cortex-M systems, and real-time firmware design.
 
-### **Firmware & System Architecture**
-- Porting the original Arduino firmware to **Zephyr RTOS**, enabling structured multitasking (MIDI parsing, scheduling, actuator control).
-- Evaluate **USB-MIDI or Bluetooth-MIDI** input for more flexible song control.
+### ⚡**Hardware & Electronics Evolution**
+- Migration from direct MCU-driven servo outputs to I2C-based PWM driver boards (e.g. PCA9685-class devices)
+    - Improves scalability beyond MCU timer limits
+    - Reduces ISR and timing jitter
+    - Enables cleaner electrical load distribution across multiple power domains
+- Redesign of power and control electronics to better support simultaneous multi-key actuation
+- Mechanical refinements to improve structural stability during dense chord play and rapid passages
 
-### **Software Enhancements**
-- Reintroduce actuator temperature monitoring and protection once the new hardware stack is finalized.
-- Improve servo timing algorithms for smoother, more musical playability.
+### 🧠 **Firmware & System Architecture**
+- Porting legacy Arduino firmware to Zephyr RTOS running on an STM32WB55 (ARM Cortex-M4/M0+)
+- Introduction of a multi-threaded architecture, separating:
+    - MIDI input parsing
+    - Event queuing and scheduling
+    - Servo motion execution
+- Explicit handling of timing determinism, task prioritization, and inter-thread communication
+- Improved fault isolation and system robustness through RTOS primitives
+### 🔌**Interfaces & Control**
+- Evaluation of USB-MIDI and Bluetooth-MIDI as alternatives to traditional DIN MIDI
+- Integration with a Raspberry Pi for higher-level control, song selection, and testing workflows
+### 🛠️ **Future Enhancements**
+- Introduction of per-actuator temperature monitoring and protection, previously considered in early hardware designs
+- Refinement of servo motion algorithms for smoother articulation and more musical phrasing
+- Continued exploration of power-aware scheduling and coordinated actuator behavior under load

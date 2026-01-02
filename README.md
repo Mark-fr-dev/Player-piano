@@ -2,19 +2,18 @@
 
 ## 🎯 Objective
 
-A client affiliated with a well-known South African artist commissioned the development of a full-range electromechanical piano-playing system capable of actuating all 88 keys of a standard acoustic piano.
+Develop a full-range electromechanical piano-playing system capable of actuating all 88 keys of a standard acoustic piano.
 
-The project was conducted as a fully remote collaboration, with all mechanical, electronic, and firmware design performed in Taiwan, and hardware fabricated and assembled locally.
+The project was conducted as a fully remote collaboration with a partner in South Africa, with all mechanical, electronic, and firmware design performed in Taiwan. Initial hardware was fabricated and assembled locally.
 
-The project is currently on hold, pending further artistic direction from the client.
-In parallel, the system is being actively redesigned and modernized as a technical R&D platform focused on embedded systems architecture, real-time control, and power-aware firmware design.
+The system is currently being redesigned and modernized as a technical R&D platform focused on embedded systems architecture, real-time control, and power-aware firmware design.
 
 ---
 
 ## 🧩 Design Assumptions and Constraints
 
-Initial design discussions with the client led to the following explicit constraints and architectural assumptions:
-- At the client’s request, the initial prototype must use an Arduino-class microcontroller, prioritizing accessibility, ease of replacement, and rapid prototyping.
+Initial design discussions with the partner led to the following explicit constraints and architectural assumptions:
+- At the partner’s request, the initial prototype must use an Arduino-class microcontroller, prioritizing accessibility, ease of replacement, and rapid prototyping.
 - Hobby servo motors were selected as actuators for the prototype phase, balancing availability, mechanical simplicity, and controllability.
 - Alternative actuators evaluated during concept development included solenoids and shape-memory (muscle wire) actuators.
 - Musical performance data would be supplied using standard MIDI messages, originating from a PC-class device such as a desktop computer or Raspberry Pi.
@@ -91,9 +90,9 @@ While functionally successful, this monolithic firmware structure exposed severa
 - [Old Prototype playing the MacGyver theme](https://github.com/Mark-fr-dev/Player-piano/blob/main/files/Piano_player_Macguyver_2.mp4)
 ### New prototype (STM32/Zephyr RTOS)
 **Why only 44 servos are shown**
-The piano player architecture is modular, consisting of two identical 44-key subsystems. During the current redesign phase, one subsystem remains in active development while the second 44-key actuator assembly was sent to the client for evaluation and testing.
+The piano player is designed as a modular system with two identical 44-key subsystems. During the current redesign phase, one subsystem remains under active development, while the second 44-key actuator assembly was supplied to a project partner as a standalone evaluation and testing platform.
 
-The later videos therefore demonstrate only one half of the keyboard, but reflect the final control approach being validated prior to re-integration into a full 88-key system.
+As a result, the videos demonstrate only one half of the keyboard, but accurately represent the control architecture being validated prior to full 88-key reintegration.
 - [Zephyr Prototype - Calibration](https://youtu.be/I6WWZ7fvxso?si=0EKCNAyHqwldLYc-)
 - [Zephyr prototype - River Flows in You - Yaruma](https://youtu.be/aHvtVR1HKiI?si=-SzJifrcjJAI7ls0)
   

@@ -123,6 +123,13 @@ This redesign serves both as a functional upgrade and as a hands-on learning pro
 ### 🔌**Interfaces & Control**
 - Evaluation of USB-MIDI and Bluetooth-MIDI as alternatives to traditional DIN MIDI
 - Integration with a Raspberry Pi for higher-level control, song selection, and testing workflows
+#### 🌐 Web-Based Control Interface
+To streamline testing and enable remote interaction, a lightweight Flask-based webserver was deployed on the Raspberry Pi. This interface allows users to browse available MIDI files, queue songs into a playlist, and control playback in real time. The interface includes a “Now Playing” widget with elapsed time tracking, pause/resume functionality, and playlist management tools.
+
+<img width="500" height="428" alt="image" src="https://github.com/user-attachments/assets/67916efa-f306-4b98-8527-26a6da34ec72" />
+
+This control layer serves as a bridge between high-level song selection and low-level actuator execution, and has proven invaluable during collaborative testing and performance validation.
+
 ### 🛠️ **Future Enhancements**
 - Introduction of per-actuator temperature monitoring and protection, previously considered in early hardware designs
 - Refinement of servo motion algorithms for smoother articulation and more musical phrasing
